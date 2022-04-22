@@ -1,16 +1,15 @@
 package com.bsuir.trpo.datasource;
 
-import javax.management.remote.JMXConnectionNotification;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.bsuir.trpo.datasource.SQLConstant.*;
+import static com.bsuir.trpo.constant.SQLConstant.*;
 
 public class SqlInitializer {
 
-    public void checkTablesInDB() {
+    public boolean checkTablesInDB() {
         Connection connection = DataSource.getConnection();
 
         System.out.println("Проверяем таблицы базы данных...");
@@ -20,7 +19,7 @@ public class SqlInitializer {
 
             if (resultSet.next()) {
                 System.out.println("Проверка успешно пройдена");
-                return;
+                return true;
             } else {
                 System.out.println("База данных не существует.");
                 System.out.println("Запускаю скрипт инициализации...\n");
@@ -29,8 +28,15 @@ public class SqlInitializer {
 
 
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос.");
+            System.err.println("Невозможно выполнить запрос. База данных не существует");
             System.err.println(e);
+            System.out.println("Запускаю скрипт инициализации...\n");
+            try {
+                initializeTables(connection);
+            } catch (SQLException ex) {
+                System.err.println("Критическая ошибка. Не могу инициализировать базу данных...");
+                System.err.println();
+            }
         } finally {
             try {
                 connection.close();
@@ -40,6 +46,7 @@ public class SqlInitializer {
             }
         }
 
+        return false;
     }
 
     private void initializeTables(Connection connection) throws SQLException {

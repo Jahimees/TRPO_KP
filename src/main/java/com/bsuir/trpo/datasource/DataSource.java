@@ -19,8 +19,6 @@ public final class DataSource {
 
             if (connection == null || connection.isClosed()) {
                 connection = DriverManager.getConnection(connectionString + dbName);
-
-                System.out.println("Подключение создано!");
             }
         } catch (SQLException ex) {
             System.out.println("Невозможно получить соединение... Файл базы данных не найден");

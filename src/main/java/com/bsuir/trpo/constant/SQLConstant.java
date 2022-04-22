@@ -1,13 +1,11 @@
-package com.bsuir.trpo.datasource;
+package com.bsuir.trpo.constant;
 
 public final class SQLConstant {
     public static final String CREATE_USER_TABLE = "CREATE TABLE if not exists 'user' (" +
-            "'login' VARCHAR(45) PRIMARY KEY, " +
+            "'login' text PRIMARY KEY, " +
             "'salted_hash_password' text," +
-            "'salt' VARCHAR(45)," +
+            "'salt' text," +
             "'role' BOOLEAN," +
-            "'name' VARCHAR(45)," +
-            "'surname' VARCHAR(45)," +
             "'access' BOOLEAN);";
 
     public static final String CREATE_STUDENT_LIST = "CREATE TABLE if not exists 'student_list' (" +
@@ -18,5 +16,8 @@ public final class SQLConstant {
             "'activity' BOOLEAN," +
             "'income' FLOAT)";
 
+    public static final String INSERT_INTO_USER = "INSERT INTO user('login', 'salted_hash_password', 'salt', 'role', 'access') VALUES (?, ?, ?, ?, ?)";
+
     public static final String SELECT_FROM_USER = "SELECT * FROM 'user'";
+    public static final String SELECT_FROM_USER_BY_LOGIN = "SELECT * FROM 'user' WHERE login=?";
 }
