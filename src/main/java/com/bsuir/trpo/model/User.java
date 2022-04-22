@@ -31,7 +31,7 @@ public class User {
         this.salt = salt;
     }
 
-    public boolean isRole() {
+    public boolean getRole() {
         return role;
     }
 

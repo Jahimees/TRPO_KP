@@ -13,4 +13,5 @@ public class ParamConstant {
     public static final String ACCESS = "access";
     public static final String CONFIRMED = "confirmed";
     public static final String USER = "user";
+    public static final String SUCCESS = "success";
 }

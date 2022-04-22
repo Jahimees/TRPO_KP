@@ -27,6 +27,7 @@ public class RegistrationService implements ActionService {
 
         Connection connection = DataSource.getConnection();
 
+        HashMap<String, Object> resultParams = new HashMap<>();
         try {
             PreparedStatement statement = connection.prepareStatement(INSERT_INTO_USER);
 
@@ -38,11 +39,13 @@ public class RegistrationService implements ActionService {
 
             statement.execute();
             System.out.println("Регистрация прошла успешно!");
+            resultParams.put(SUCCESS, true);
         } catch (SQLException e) {
             System.err.println("Невозможно зарегистрировать пользователя.");
             System.err.println(e);
+            resultParams.put(SUCCESS, false);
         }
 
-        return new HashMap<>();
+        return resultParams;
     }
 }

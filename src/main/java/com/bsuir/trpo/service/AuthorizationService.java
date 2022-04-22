@@ -46,7 +46,7 @@ public class AuthorizationService implements ActionService {
         String saltedHashPassword = hashPasswordService.convertPasswordForComparing(clearPassword, user.getSalt());
 
         HashMap<String, Object> resultParams = new HashMap<>();
-        resultParams.put(CONFIRMED,  saltedHashPassword.equals(user.getSaltedHashPassword()));
+        resultParams.put(CONFIRMED,  saltedHashPassword.equals(user.getSaltedHashPassword()) && user.isAccess());
         resultParams.put(USER, user);
 
         return resultParams;
