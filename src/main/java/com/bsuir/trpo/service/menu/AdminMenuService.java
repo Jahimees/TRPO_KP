@@ -17,13 +17,13 @@ public class AdminMenuService extends AccountMenuService {
                 Scanner scanner = new Scanner(System.in);
                 userInput = scanner.nextInt();
 
-                if (userInput < 0 || userInput > 2) {
+                if (userInput < 0 || userInput > 3) {
                     throw new InputMismatchException();
                 }
 
                 break;
             } catch (InputMismatchException e) {
-                System.err.println("Необходимо ввести числовое значение (0-2)");
+                System.err.println("Необходимо ввести числовое значение (0-3)");
             }
         }
         return userInput + "";
@@ -47,6 +47,11 @@ public class AdminMenuService extends AccountMenuService {
                     flag = false;
                     break;
                 }
+                case "3": {
+                    ConsoleUserInterface.getInstance().setCurrentMenu(STUDENT_LIST_MANAGER_MENU_SERVICE_NAME);
+                    flag = false;
+                    break;
+                }
                 case "0": {
                     setActiveUser(null);
                     ConsoleUserInterface.getInstance().setCurrentMenu(AUTHORIZATION_REGISTRATION_MENU_SERVICE_NAME);
@@ -61,6 +66,7 @@ public class AdminMenuService extends AccountMenuService {
         System.out.println("Выберите вариант:");
         System.out.println("1: Заявки на подтверждение регистрации");
         System.out.println("2: Управление учетными записями пользователей");
+        System.out.println("3: Управление списками студентов на очередь в общежитие");
         System.out.println("0: Выйти из системы");
     }
 }

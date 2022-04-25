@@ -3,7 +3,7 @@ package com.bsuir.trpo.service.menu;
 import com.bsuir.trpo.ConsoleUserInterface;
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
-import com.bsuir.trpo.service.*;
+import com.bsuir.trpo.service.user.*;
 
 import java.util.InputMismatchException;
 import java.util.List;

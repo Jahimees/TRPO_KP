@@ -8,7 +8,7 @@ public final class SQLConstant {
             "'role' BOOLEAN," +
             "'access' BOOLEAN);";
 
-    public static final String CREATE_STUDENT_LIST = "CREATE TABLE if not exists 'student_list' (" +
+    public static final String CREATE_STUDENT_LIST = "CREATE TABLE if not exists 'student' (" +
             "'id' INTEGER PRIMARY KEY AUTOINCREMENT," +
             "'fio' text," +
             "'group' INTEGER," +
@@ -26,4 +26,8 @@ public final class SQLConstant {
     public static final String UPDATE_USER_PASSWORD = "UPDATE 'user' SET salted_hash_password=?, salt=? WHERE login=?";
     public static final String UPDATE_USER_ROLE = "UPDATE 'user' SET role=? WHERE login=?";
     public static final String SELECT_ALL_ADMINS = "SELECT * FROM 'user' WHERE role=true";
+    public static final String SELECT_ALL_STUDENTS = "SELECT * FROM 'student'";
+    public static final String INSERT_INTO_STUDENT = "INSERT INTO student('fio', 'group', 'average_mark', 'activity', 'income') VALUES (?,?,?,?,?)";
+    public static final String DELETE_STUDENT = "DELETE FROM 'student' WHERE id=?";
+    public static final String GET_STUDENT_BY_ID = "SELECT * FROM 'student' WHERE id=?";
 }

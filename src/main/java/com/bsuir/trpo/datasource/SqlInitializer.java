@@ -21,7 +21,7 @@ public class SqlInitializer {
                 System.out.println("Проверка успешно пройдена");
                 return true;
             } else {
-                System.out.println("База данных не существует.");
+                System.err.println("База данных не существует.");
                 System.out.println("Запускаю скрипт инициализации...\n");
                 initializeTables(connection);
             }
@@ -29,7 +29,6 @@ public class SqlInitializer {
 
         } catch (SQLException e) {
             System.err.println("Невозможно выполнить запрос. База данных не существует");
-            System.err.println(e);
             System.out.println("Запускаю скрипт инициализации...\n");
             try {
                 initializeTables(connection);

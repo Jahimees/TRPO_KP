@@ -1,6 +1,8 @@
-package com.bsuir.trpo.service;
+package com.bsuir.trpo.service.user;
 
 import com.bsuir.trpo.datasource.DataSource;
+import com.bsuir.trpo.service.ActionService;
+import com.bsuir.trpo.service.HashPasswordService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

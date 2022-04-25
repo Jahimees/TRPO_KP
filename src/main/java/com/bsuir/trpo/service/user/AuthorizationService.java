@@ -1,8 +1,10 @@
-package com.bsuir.trpo.service;
+package com.bsuir.trpo.service.user;
 
 import com.bsuir.trpo.ConsoleUserInterface;
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
+import com.bsuir.trpo.service.ActionService;
+import com.bsuir.trpo.service.HashPasswordService;
 import com.bsuir.trpo.service.menu.AccountMenuService;
 
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 package com.bsuir.trpo.service.menu;
 
-import com.bsuir.trpo.service.AuthorizationService;
-import com.bsuir.trpo.service.RegistrationService;
+import com.bsuir.trpo.service.user.AuthorizationService;
+import com.bsuir.trpo.service.user.RegistrationService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

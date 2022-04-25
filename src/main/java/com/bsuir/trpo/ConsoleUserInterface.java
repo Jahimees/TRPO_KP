@@ -2,7 +2,7 @@ package com.bsuir.trpo;
 
 import com.bsuir.trpo.datasource.SqlInitializer;
 import com.bsuir.trpo.model.User;
-import com.bsuir.trpo.service.RegistrationService;
+import com.bsuir.trpo.service.user.RegistrationService;
 import com.bsuir.trpo.service.menu.*;
 
 
@@ -13,11 +13,13 @@ public final class ConsoleUserInterface {
     private static final MenuService AUTHORIZATION_REGISTRATION_MENU_SERVICE = new AuthorizationRegistrationMenuService();
     private static final MenuService CONFIRM_ACCOUNT_MENU_SERVICE = new ConfirmAccountMenuService();
     private static final MenuService ACCOUNT_MANAGER_MENU_SERVICE = new AccountManagerMenuService();
+    private static final MenuService STUDENT_LIST_MANAGER_MENU_SERVICE = new StudentListManagerMenuService();
     public static final String ADMIN_MENU_SERVICE_NAME = "adminMenuService";
     public static final String USER_MENU_SERVICE_NAME = "userMenuService";
     public static final String AUTHORIZATION_REGISTRATION_MENU_SERVICE_NAME = "authorizationRegistrationMenuService";
     public static final String CONFIRM_ACCOUNT_MENU_SERVICE_NAME = "confirmAccountMenuService";
     public static final String ACCOUNT_MANAGER_MENU_SERVICE_NAME = "accountManagerMenuService";
+    public static final String STUDENT_LIST_MANAGER_MENU_SERVICE_NAME = "studentListManagerMenuService";
 
     private static ConsoleUserInterface instance;
     private static MenuService currentMenu;
@@ -88,6 +90,10 @@ public final class ConsoleUserInterface {
             }
             case ACCOUNT_MANAGER_MENU_SERVICE_NAME: {
                 currentMenu = ACCOUNT_MANAGER_MENU_SERVICE;
+                break;
+            }
+            case STUDENT_LIST_MANAGER_MENU_SERVICE_NAME: {
+                currentMenu = STUDENT_LIST_MANAGER_MENU_SERVICE;
                 break;
             }
         }

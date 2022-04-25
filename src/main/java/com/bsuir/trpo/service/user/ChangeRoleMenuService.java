@@ -1,7 +1,8 @@
-package com.bsuir.trpo.service;
+package com.bsuir.trpo.service.user;
 
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
+import com.bsuir.trpo.service.ActionService;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;

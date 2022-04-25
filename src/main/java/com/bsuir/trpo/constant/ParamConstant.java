@@ -14,4 +14,11 @@ public class ParamConstant {
     public static final String CONFIRMED = "confirmed";
     public static final String USER = "user";
     public static final String SUCCESS = "success";
+
+    public static final String ID = "id";
+    public static final String FIO = "fio";
+    public static final String GROUP = "group";
+    public static final String AVERAGE_MARK = "average_mark";
+    public static final String ACTIVITY = "activity";
+    public static final String INCOME = "income";
 }

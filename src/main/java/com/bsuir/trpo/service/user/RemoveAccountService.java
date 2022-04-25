@@ -1,19 +1,21 @@
-package com.bsuir.trpo.service;
+package com.bsuir.trpo.service.user;
 
 import com.bsuir.trpo.ConsoleUserInterface;
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
+import com.bsuir.trpo.service.ActionService;
 
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static com.bsuir.trpo.constant.ParamConstant.*;
+import static com.bsuir.trpo.constant.ParamConstant.LOGIN;
 
-public class ChangeAccessService implements ActionService {
+public class RemoveAccountService implements ActionService {
 
-    public void changeUserAccess(boolean access) {
+    public void removeAccount() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\nВведите логин аккаунта, на котором будет изменен доступ");
+        System.out.println("\nВведите логин аккаунта, который будет удален");
+
         String login = scanner.nextLine();
 
         if (login == null || login.equals("")) {
@@ -22,33 +24,30 @@ public class ChangeAccessService implements ActionService {
         }
 
         if (ConsoleUserInterface.getActiveAdminUser().getLogin().equals(login)) {
-            System.err.println("Невозможно изменить доступ самому себе!");
+            System.err.println("Невозможно удалить самого себя");
             return;
         }
 
         HashMap<String, Object> params = new HashMap<>();
         params.put(LOGIN, login);
-        params.put(ACCESS, access);
 
         execute(params);
     }
 
+
     @Override
     public HashMap<String, Object> execute(HashMap<String, Object> params) {
-        UserDBService userDBService = new UserDBService();
         String login = (String) params.get(LOGIN);
-        boolean access = (boolean) params.get(ACCESS);
 
+        UserDBService userDBService = new UserDBService();
         User user = userDBService.getUser(login);
 
         if (user == null) {
-            System.err.println("Пользователя " + user.getLogin() + " не существует!");
+            System.err.println("Пользователя " + login + " не существует!");
             return new HashMap<>();
         }
 
-        userDBService.setAccessUser(login, access);
-
-        System.out.println("Пользователь " + login + (access ? " разблокирован" : " заблокирован"));
+        userDBService.removeUser(login);
         return new HashMap<>();
     }
 }
