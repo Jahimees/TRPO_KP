@@ -20,4 +20,10 @@ public final class SQLConstant {
 
     public static final String SELECT_FROM_USER = "SELECT * FROM 'user'";
     public static final String SELECT_FROM_USER_BY_LOGIN = "SELECT * FROM 'user' WHERE login=?";
+    public static final String SELECT_FROM_USER_WITHOUT_ACCESS = "SELECT * FROM 'user' WHERE access=0";
+    public static final String DELETE_USER = "DELETE FROM 'user' WHERE login=?";
+    public static final String SET_ACCESS_BY_LOGIN = "UPDATE 'user' SET access=? WHERE login=?";
+    public static final String UPDATE_USER_PASSWORD = "UPDATE 'user' SET salted_hash_password=?, salt=? WHERE login=?";
+    public static final String UPDATE_USER_ROLE = "UPDATE 'user' SET role=? WHERE login=?";
+    public static final String SELECT_ALL_ADMINS = "SELECT * FROM 'user' WHERE role=true";
 }

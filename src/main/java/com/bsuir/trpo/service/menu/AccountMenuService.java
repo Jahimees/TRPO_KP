@@ -6,7 +6,7 @@ public abstract class AccountMenuService extends MenuService {
     private User activeUser;
 
     public void setActiveUser(User user) {
-        this.activeUser = activeUser;
+        this.activeUser = user;
     }
 
     public User getActiveUser() {

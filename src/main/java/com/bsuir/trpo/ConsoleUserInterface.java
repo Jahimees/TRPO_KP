@@ -1,21 +1,23 @@
 package com.bsuir.trpo;
 
 import com.bsuir.trpo.datasource.SqlInitializer;
-import com.bsuir.trpo.service.menu.AdminMenuService;
-import com.bsuir.trpo.service.menu.AuthorizationRegistrationMenuService;
-import com.bsuir.trpo.service.menu.MenuService;
-import com.bsuir.trpo.service.menu.UserMenuService;
+import com.bsuir.trpo.model.User;
+import com.bsuir.trpo.service.RegistrationService;
+import com.bsuir.trpo.service.menu.*;
 
-import static com.bsuir.trpo.service.menu.AuthorizationRegistrationMenuService.register;
 
 public final class ConsoleUserInterface {
 
-    private static final MenuService ADMIN_MENU_SERVICE = new AdminMenuService();
-    private static final MenuService USER_MENU_SERVICE = new UserMenuService();
+    private static final AccountMenuService ADMIN_MENU_SERVICE = new AdminMenuService();
+    private static final AccountMenuService USER_MENU_SERVICE = new UserMenuService();
     private static final MenuService AUTHORIZATION_REGISTRATION_MENU_SERVICE = new AuthorizationRegistrationMenuService();
+    private static final MenuService CONFIRM_ACCOUNT_MENU_SERVICE = new ConfirmAccountMenuService();
+    private static final MenuService ACCOUNT_MANAGER_MENU_SERVICE = new AccountManagerMenuService();
     public static final String ADMIN_MENU_SERVICE_NAME = "adminMenuService";
     public static final String USER_MENU_SERVICE_NAME = "userMenuService";
     public static final String AUTHORIZATION_REGISTRATION_MENU_SERVICE_NAME = "authorizationRegistrationMenuService";
+    public static final String CONFIRM_ACCOUNT_MENU_SERVICE_NAME = "confirmAccountMenuService";
+    public static final String ACCOUNT_MANAGER_MENU_SERVICE_NAME = "accountManagerMenuService";
 
     private static ConsoleUserInterface instance;
     private static MenuService currentMenu;
@@ -39,7 +41,8 @@ public final class ConsoleUserInterface {
         printHelloWord();
         if (!connectionIsOk()) {
             System.out.println("Система была только что создана! Пожалуйста, зарегистрируйте аккаунт администратора!");
-            while (!register(true)) ;
+            RegistrationService registrationService = new RegistrationService();
+            while (!registrationService.register(true, true)) ;
         }
 
         setCurrentMenu(AUTHORIZATION_REGISTRATION_MENU_SERVICE_NAME);
@@ -61,6 +64,10 @@ public final class ConsoleUserInterface {
         System.out.println("\n--Добро пожаловать в программу распределения мест в общежитии!--\n");
     }
 
+    public static User getActiveAdminUser() {
+        return ADMIN_MENU_SERVICE.getActiveUser();
+    }
+
     public void setCurrentMenu(String currentMenuName) {
         switch (currentMenuName) {
             case ADMIN_MENU_SERVICE_NAME: {
@@ -73,6 +80,14 @@ public final class ConsoleUserInterface {
             }
             case AUTHORIZATION_REGISTRATION_MENU_SERVICE_NAME: {
                 currentMenu = AUTHORIZATION_REGISTRATION_MENU_SERVICE;
+                break;
+            }
+            case CONFIRM_ACCOUNT_MENU_SERVICE_NAME: {
+                currentMenu = CONFIRM_ACCOUNT_MENU_SERVICE;
+                break;
+            }
+            case ACCOUNT_MANAGER_MENU_SERVICE_NAME: {
+                currentMenu = ACCOUNT_MANAGER_MENU_SERVICE;
                 break;
             }
         }

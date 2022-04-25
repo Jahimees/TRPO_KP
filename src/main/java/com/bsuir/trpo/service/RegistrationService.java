@@ -6,11 +6,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import static com.bsuir.trpo.constant.ParamConstant.*;
 import static com.bsuir.trpo.constant.SQLConstant.INSERT_INTO_USER;
 
 public class RegistrationService implements ActionService {
+
+    public boolean register(boolean isAdmin, boolean access) {
+        System.out.println("Введите логин: ");
+
+        Scanner scanner = new Scanner(System.in);
+        String login = scanner.nextLine();
+
+        System.out.println("Введите пароль: ");
+        String password = scanner.nextLine();
+
+        if (login == null || login.equals("") || password == null || password.equals("")) {
+            System.err.println("Значения не могут быть пустыми!");
+            return false;
+        }
+
+        HashMap<String, Object> params = new HashMap<>();
+        params.put(LOGIN, login);
+        params.put(CLEAR_PASSWORD, password);
+        params.put(ROLE, isAdmin);
+        params.put(ACCESS, access);
+
+        return (boolean) execute(params).get(SUCCESS);
+    }
+
     @Override
     public HashMap<String, Object> execute(HashMap<String, Object> params) {
         System.out.println("Регистрируем нового пользователя...");
