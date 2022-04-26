@@ -3,8 +3,7 @@ package com.bsuir.trpo.service.menu;
 import com.bsuir.trpo.ConsoleUserInterface;
 import com.bsuir.trpo.datasource.StudentDBService;
 import com.bsuir.trpo.model.Student;
-import com.bsuir.trpo.service.student.CreateStudentService;
-import com.bsuir.trpo.service.student.DeleteStudentService;
+import com.bsuir.trpo.service.student.*;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -46,7 +45,7 @@ public class StudentListManagerMenuService extends MenuService {
                     break;
                 }
                 case "2": {
-                    new CreateStudentService().createStudent();
+                    new CreateStudentService().createOrUpdateStudent();
                     break;
                 }
                 case "3": {
@@ -54,16 +53,30 @@ public class StudentListManagerMenuService extends MenuService {
                     break;
                 }
                 case "4": {
-
+                    new UpdateStudentService().createOrUpdateStudent();
+                    break;
                 }
                 case "5": {
-
+                    StudentDBService studentDBService = new StudentDBService();
+                    System.out.println("Очередь на получение общежития:");
+                    printStudents(new SortStudentService().prioritySort(studentDBService.getAllStudents()));
+                    break;
                 }
                 case "6": {
+                    List<Student> studentList = new SearchStudentService().searchStudents();
+                    if (studentList.isEmpty()) {
+                        System.out.println("По заданным параметрам студенты не найдены!");
+                        break;
+                    }
 
+                    printStudents(studentList);
+                    break;
                 }
                 case "7": {
-
+                    StudentDBService studentDBService = new StudentDBService();
+                    List<Student> studentList = studentDBService.getAllStudents();
+                    printStudents(new SortStudentService().sort(studentList));
+                    break;
                 }
                 case "0": {
                     ConsoleUserInterface.getInstance().setCurrentMenu(ADMIN_MENU_SERVICE_NAME);
@@ -79,9 +92,14 @@ public class StudentListManagerMenuService extends MenuService {
             System.out.println("На данный момент список не существует\n");
             return;
         }
-        System.out.println(" ID|      ФИО      | № Группы |Ср.б.|Активность|Доход на ч.");
+        System.out.println(" ID|      ФИО           | № Группы |Ср.б.|Активность|Доход на ч.");
         for (Student student : studentList) {
-            System.out.println(" " + student.getId() + " | " + student.getFio() + " | " + student.getGroup() + " | " + student.getAverageMark() + " | " + (student.isActivity() ? "  Да  " : "  Нет ") + " | " + student.getIncome());
+            String fio = student.getFio();
+            for (int i = 0; i < 18 - student.getFio().length(); i++) {
+                fio += " ";
+            }
+
+            System.out.println(" " + student.getId() + " | " + fio + " |  " + student.getGroup() + "  | " + student.getAverageMark() + " |  " + (student.isActivity() ? "  Да  " : "  Нет ") + "  | " + student.getIncome());
         }
         System.out.println("\n");
     }
@@ -93,7 +111,7 @@ public class StudentListManagerMenuService extends MenuService {
         System.out.println("2: Добавление новой записи");
         System.out.println("3: Удалить запись");
         System.out.println("4: Редактировать запись\n");
-        System.out.println("5: Индивидуальное задание");
+        System.out.println("5: Вывести список очередности предоставления места в общежитии (Индивидуальное задание)");
         System.out.println("6: Поиск данных");
         System.out.println("7: Сортировка\n");
         System.out.println("0: Назад");

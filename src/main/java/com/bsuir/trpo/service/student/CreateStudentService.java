@@ -3,7 +3,6 @@ package com.bsuir.trpo.service.student;
 import com.bsuir.trpo.datasource.StudentDBService;
 import com.bsuir.trpo.service.ActionService;
 
-import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ import static com.bsuir.trpo.constant.ParamConstant.*;
 
 public class CreateStudentService implements ActionService {
 
-    public void createStudent() {
+    public void createOrUpdateStudent() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите ФИО студента:");
 
@@ -48,8 +47,8 @@ public class CreateStudentService implements ActionService {
         }
 
         System.out.println("Введите, активен ли учащийся (1 - да, 2 - нет)");
-        int activityInt = 0;
-        boolean activity = false;
+        int activityInt;
+        boolean activity;
         try {
             activityInt = scanner.nextInt();
             if (activityInt > 2 || activityInt < 1) {

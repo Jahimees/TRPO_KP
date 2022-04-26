@@ -30,4 +30,7 @@ public final class SQLConstant {
     public static final String INSERT_INTO_STUDENT = "INSERT INTO student('fio', 'group', 'average_mark', 'activity', 'income') VALUES (?,?,?,?,?)";
     public static final String DELETE_STUDENT = "DELETE FROM 'student' WHERE id=?";
     public static final String GET_STUDENT_BY_ID = "SELECT * FROM 'student' WHERE id=?";
+    public static final String UPDATE_STUDENT = "UPDATE 'student' SET fio=?, 'group'=?, average_mark=?, activity=?, income=? WHERE id=?;";
+    public static final String SELECT_STUDENTS_BY_ACTIVITY = "SELECT * FROM 'student' WHERE activity=?";
+    public static final String SELECT_STUDENTS_BY_GROUP = "SELECT * FROM 'student' WHERE student.'group'=?";
 }
