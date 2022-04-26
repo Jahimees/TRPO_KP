@@ -86,7 +86,7 @@ public class StudentListManagerMenuService extends MenuService {
         }
     }
 
-    private void printStudents(List<Student> studentList) {
+    public static void printStudents(List<Student> studentList) {
         System.out.println("Список студентов, стоящих в очереди на общежитие:");
         if (studentList.isEmpty()) {
             System.out.println("На данный момент список не существует\n");
