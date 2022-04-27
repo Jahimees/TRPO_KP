@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.bsuir.trpo.ConsoleUserInterface.ADMIN_MENU_SERVICE_NAME;
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 
 public class ConfirmAccountMenuService extends MenuService {
 
@@ -27,7 +28,7 @@ public class ConfirmAccountMenuService extends MenuService {
                 return input;
             }
 
-            System.err.println("Введенные данные не соответствуют требованиям! Попробуйте ещё раз");
+            System.err.println(INVALID_DATA_INPUT);
         }
     }
 
@@ -69,11 +70,11 @@ public class ConfirmAccountMenuService extends MenuService {
         UserDBService userDBService = new UserDBService();
         List<User> userList = userDBService.getNotAccessedUsers();
 
-        System.out.println("Введите логин пользователя, а затем через пробел значение 1 (разрешить доступ) или 2 (запретить доступ)");
-        System.out.println("Внимание, при запрете доступа, заявка удаляется навсегда!");
+        System.out.println(CONFIRM_ACCOUNT_HELP);
+        System.out.println(WARNING_NOT_CONFIRM_ACCOUNT);
 
         if (userList.isEmpty()) {
-            System.out.println("\nСейчас нет заявок на регистрацию.");
+            System.out.println(NO_APPLICATIONS);
         }
 
         for (User user : userList) {
@@ -82,6 +83,6 @@ public class ConfirmAccountMenuService extends MenuService {
             System.out.println("=======");
         }
 
-        System.out.println("Введите 0, чтобы вернуться в предыдущее меню");
+        System.out.println(PREVIOUS_MENU);
     }
 }

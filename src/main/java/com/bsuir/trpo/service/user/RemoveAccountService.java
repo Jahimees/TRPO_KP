@@ -6,8 +6,11 @@ import com.bsuir.trpo.model.User;
 import com.bsuir.trpo.service.ActionService;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.NEED_1_or_2;
+import static com.bsuir.trpo.constant.LoggerMessageConstant.WARNING_DELETE_ACCOUNT;
 import static com.bsuir.trpo.constant.ParamConstant.LOGIN;
 
 public class RemoveAccountService implements ActionService {
@@ -47,7 +50,29 @@ public class RemoveAccountService implements ActionService {
             return new HashMap<>();
         }
 
+        if (!confirmDeletion(login)) {
+            return new HashMap<>();
+        }
+
         userDBService.removeUser(login);
         return new HashMap<>();
+    }
+
+    public boolean confirmDeletion(String name) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(WARNING_DELETE_ACCOUNT);
+
+        int userInput = 0;
+        try {
+            userInput = scanner.nextInt();
+            if (userInput < 1 || userInput > 2) {
+                throw new InputMismatchException();
+            }
+        } catch (InputMismatchException e) {
+            System.err.println(NEED_1_or_2);
+            return false;
+        }
+
+        return userInput == 1;
     }
 }

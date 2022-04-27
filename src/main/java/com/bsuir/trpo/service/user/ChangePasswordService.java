@@ -8,6 +8,8 @@ import com.bsuir.trpo.service.HashPasswordService;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.PASSWORD_CHANGED;
+import static com.bsuir.trpo.constant.LoggerMessageConstant.USER_NOT_EXISTS;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
 public class ChangePasswordService implements ActionService {
@@ -42,14 +44,14 @@ public class ChangePasswordService implements ActionService {
         User user = userDBService.getUser(login);
 
         if (user == null) {
-            System.err.println("Пользователя " + login + " не существует!");
+            System.err.println(USER_NOT_EXISTS);
             return new HashMap<>();
         }
 
         HashMap<String, Object> convertedPassword = hashPasswordService.convertPasswordForStorage(password);
 
         userDBService.changePassword(login, (String) convertedPassword.get(CONVERTED_PASSWORD), (String) convertedPassword.get(SALT));
-        System.out.println("Пароль для пользователя " + login + " успешно изменен!");
+        System.out.println(PASSWORD_CHANGED);
 
         return new HashMap<>();
     }

@@ -8,22 +8,24 @@ import com.bsuir.trpo.service.ActionService;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
+import static com.bsuir.trpo.constant.LoggerMessageConstant.USER_LOG;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
 public class ChangeAccessService implements ActionService {
 
     public void changeUserAccess(boolean access) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\nВведите логин аккаунта, на котором будет изменен доступ");
+        System.out.println(INPUT_LOGIN_FOR_CHANGE);
         String login = scanner.nextLine();
 
         if (login == null || login.equals("")) {
-            System.err.println("Значения не могут быть пустыми!");
+            System.err.println(VALUE_CANNOT_BE_EMPTY);
             return;
         }
 
         if (ConsoleUserInterface.getActiveAdminUser().getLogin().equals(login)) {
-            System.err.println("Невозможно изменить доступ самому себе!");
+            System.err.println(CANNOT_CHANGE_ACCESS);
             return;
         }
 
@@ -43,13 +45,13 @@ public class ChangeAccessService implements ActionService {
         User user = userDBService.getUser(login);
 
         if (user == null) {
-            System.err.println("Пользователя " + user.getLogin() + " не существует!");
+            System.err.println(USER_NOT_EXISTS);
             return new HashMap<>();
         }
 
         userDBService.setAccessUser(login, access);
 
-        System.out.println("Пользователь " + login + (access ? " разблокирован" : " заблокирован"));
+        System.out.println(USER_LOG + login + (access ? UNBLOCKED : BLOCKED));
         return new HashMap<>();
     }
 }

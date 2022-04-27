@@ -8,13 +8,14 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.ID;
 
 public class DeleteStudentService implements ActionService {
 
     public void deleteStudent() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите id удаляемого студента");
+        System.out.println(INPUT_ID_STUDENT);
 
         int id = 0;
         try {
@@ -23,7 +24,7 @@ public class DeleteStudentService implements ActionService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.out.println("Id должно быть числом > 0");
+            System.out.println(ERROR_ID);
             return;
         }
 
@@ -41,11 +42,33 @@ public class DeleteStudentService implements ActionService {
         Student student = studentDBService.getStudent(id);
 
         if (student == null) {
-            System.err.println("Такого студента не существует");
+            System.err.println(STUDENT_NOT_EXISTS);
+            return new HashMap<>();
+        }
+
+        if (!confirmDeletion(student.getFio())) {
             return new HashMap<>();
         }
 
         studentDBService.removeStudent(id);
         return new HashMap<>();
+    }
+
+    public boolean confirmDeletion(String name) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(WARNING_DELETE_STUDENT);
+
+        int userInput = 0;
+        try {
+            userInput = scanner.nextInt();
+            if (userInput < 1 || userInput > 2) {
+                throw new InputMismatchException();
+            }
+        } catch (InputMismatchException e) {
+            System.err.println(NEED_1_or_2);
+            return false;
+        }
+
+        return userInput == 1;
     }
 }

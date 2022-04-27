@@ -1,7 +1,5 @@
 package com.bsuir.trpo.model;
 
-import static com.bsuir.trpo.constant.ParamConstant.*;
-
 public class Student {
     private int id;
     private String fio;
@@ -58,21 +56,4 @@ public class Student {
         this.income = income;
     }
 
-    public Object getValueByFieldName(String fieldName) {
-        switch (fieldName) {
-            case ID:
-                return getId();
-            case FIO:
-                return getFio();
-            case GROUP:
-                return getGroup();
-            case AVERAGE_MARK:
-                return getAverageMark();
-            case ACTIVITY:
-                return isActivity();
-            case INCOME:
-                return getIncome();
-        }
-        return null;
-    }
 }

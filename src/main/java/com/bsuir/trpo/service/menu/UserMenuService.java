@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static com.bsuir.trpo.ConsoleUserInterface.AUTHORIZATION_REGISTRATION_MENU_SERVICE_NAME;
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.service.menu.StudentListManagerMenuService.printStudents;
 
 public class UserMenuService extends AccountMenuService {
@@ -29,7 +30,7 @@ public class UserMenuService extends AccountMenuService {
 
                 break;
             } catch (InputMismatchException e) {
-                System.err.println("Необходимо ввести числовое значение (0-4)");
+                System.err.println(NEED_NUMBER_0_4);
             }
         }
         return userInput + "";
@@ -49,14 +50,14 @@ public class UserMenuService extends AccountMenuService {
                 }
                 case "2": {
                     StudentDBService studentDBService = new StudentDBService();
-                    System.out.println("Очередь на получение общежития:");
+                    System.out.println(QUERY_FOR_PLACE);
                     printStudents(new SortStudentService().prioritySort(studentDBService.getAllStudents()));
                     break;
                 }
                 case "3": {
                     List<Student> studentList = new SearchStudentService().searchStudents();
                     if (studentList.isEmpty()) {
-                        System.out.println("По заданным параметрам студенты не найдены!");
+                        System.out.println(STUDENTS_NOT_FOUND);
                         break;
                     }
 
@@ -80,11 +81,11 @@ public class UserMenuService extends AccountMenuService {
 
     @Override
     protected void printMenu() {
-        System.out.println("Выберите один из следующих пунктов:");
-        System.out.println("1: Просмотреть список всех студентов, стоящих в очереди на общежитие");
-        System.out.println("2: Просмотреть очередность всех студентов, стоящих в очереди на общежитие (Инд. задание)");
-        System.out.println("3: Поиск данных");
-        System.out.println("4: Сортировка данных\n");
-        System.out.println("0: Выйти из системы");
+        System.out.println(CHOOSE_MENU_POINT);
+        System.out.println(SHOW_ALL_STUDENTS);
+        System.out.println(SHOW_QUERY_FOR_PLACE);
+        System.out.println(SEARCHING_DATA);
+        System.out.println(SORTING);
+        System.out.println(SYSTEM_EXIT);
     }
 }

@@ -12,30 +12,31 @@ import java.util.Scanner;
 
 import static com.bsuir.trpo.ConsoleUserInterface.ADMIN_MENU_SERVICE_NAME;
 import static com.bsuir.trpo.ConsoleUserInterface.USER_MENU_SERVICE_NAME;
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
 public class AuthorizationService implements ActionService {
 
     public boolean authorize() {
-        System.out.println("Пожалуйста, авторизуйтесь.");
+        System.out.println(PLEASE_AUTHORIZE);
 
-        System.out.println("Введите логин: ");
+        System.out.println(INPUT_LOGIN);
 
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
 
-        System.out.println("Введите пароль: ");
+        System.out.println(INPUT_PASSWORD);
         String password = scanner.nextLine();
 
         HashMap<String, Object> params = new HashMap<>();
         params.put(LOGIN, login);
         params.put(CLEAR_PASSWORD, password);
 
-        System.out.println("Проверяем введенные данные...");
+        System.out.println(CHECKING_INPUT_DATA);
         HashMap<String, Object> resultParams = execute(params);
 
         if ((boolean) resultParams.get(CONFIRMED)) {
-            System.out.println("Авторизация прошла успешно!");
+            System.out.println(AUTHORIZE_SUCCESSFUL);
 
             ConsoleUserInterface instance = ConsoleUserInterface.getInstance();
             User user = ((User) resultParams.get(USER));
@@ -46,8 +47,7 @@ public class AuthorizationService implements ActionService {
             }
             ((AccountMenuService) instance.getCurrentMenu()).setActiveUser(user);
         } else {
-            System.out.println("Логин или пароль неверны! Попробуйте ещё раз! " +
-                    "\n(Возможно у Вашего аккаунта нет доступа, обратитесь к администратору)");
+            System.out.println(LOGIN_OR_PASSWORD_INCORRECT);
         }
 
         return (boolean) resultParams.get(CONFIRMED);

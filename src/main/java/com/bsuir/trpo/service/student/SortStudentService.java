@@ -2,15 +2,15 @@ package com.bsuir.trpo.service.student;
 
 import com.bsuir.trpo.model.Student;
 
-import java.sql.SQLOutput;
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 
 public class SortStudentService {
 
     public List<Student> prioritySort(List<Student> studentList) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите минимальную зарплату на сегодняшний день:");
+        System.out.println(INPUT_MIN_SALARY);
 
         float minSalary;
 
@@ -20,7 +20,7 @@ public class SortStudentService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Минимальная зарплата должна быть дробным числовым значением больше 1");
+            System.err.println(MIN_SALARY_ERROR);
             return new ArrayList<>();
         }
 
@@ -45,10 +45,10 @@ public class SortStudentService {
 
     public List<Student> sort(List<Student> studentList) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите по какому критерию отсортировать студентов:");
-        System.out.println("1: По ФИО");
-        System.out.println("2: По активности");
-        System.out.println("3: По среднему баллу");
+        System.out.println(SORTING_MENU_HEADER);
+        System.out.println(BY_FIO);
+        System.out.println(BY_ACTIVITY);
+        System.out.println(BY_AVERAGE_MARK);
 
         int userInput = 0;
         try {
@@ -57,14 +57,17 @@ public class SortStudentService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Необходимо ввести число от 1 до 3");
+            System.err.println(NEED_NUMBER_1_3);
             return new ArrayList<>();
         }
 
         switch (userInput) {
-            case 1: return sortByFio(studentList);
-            case 2: return sortByActivity(studentList);
-            case 3: return sortByAverageMark(studentList, false);
+            case 1:
+                return sortByFio(studentList);
+            case 2:
+                return sortByActivity(studentList);
+            case 3:
+                return sortByAverageMark(studentList, false);
         }
 
         return new ArrayList<>();

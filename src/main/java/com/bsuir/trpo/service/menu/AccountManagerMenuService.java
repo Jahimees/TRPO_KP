@@ -9,14 +9,16 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
+
 public class AccountManagerMenuService extends MenuService {
 
     private void viewAllAccounts() {
         UserDBService userDBService = new UserDBService();
         List<User> userList = userDBService.getAllUsers();
 
-        System.out.println("Все пользовательские аккаунты:");
-        System.out.println(" # |   Логин   | Админ ");
+        System.out.println(ALL_USER_ACCOUNTS);
+        System.out.println(HEADER_USER_ACCOUNTS);
         for (int i = 1; i <= userList.size(); i++) {
             User user = userList.get(i - 1);
             System.out.println(" " + i + " | " + user.getLogin() + " | " + user.getRole());
@@ -37,7 +39,7 @@ public class AccountManagerMenuService extends MenuService {
 
                 break;
             } catch (InputMismatchException e) {
-                System.err.println("Необходимо ввести числовое значение (0-4)");
+                System.err.println(NEED_NUMBER_0_4);
             }
         }
         return userInput + "";
@@ -105,20 +107,20 @@ public class AccountManagerMenuService extends MenuService {
 
     @Override
     protected void printMenu() {
-        System.out.println("\nВыберите один из следующих пунктов:");
-        System.out.println("1: Просмотреть все учетные записи пользователей");
-        System.out.println("2: Создать новую учетную запись пользователя");
-        System.out.println("3: Редактировать учетные записи пользователей (смена пароля, роли, блокировка)");
-        System.out.println("4: Удаление учетных записей пользователей");
-        System.out.println("0: Вернуться на прошлую страницу\n");
+        System.out.println(CHOOSE_MENU_POINT);
+        System.out.println(SHOW_ALL_USER_ACCOUNTS);
+        System.out.println(CREATE_NEW_USER_ACCOUNT);
+        System.out.println(EDIT_USER_ACCOUNT);
+        System.out.println(DELETE_USER_ACCOUNT);
+        System.out.println(PREVIOUS_MENU);
     }
 
     private void printEditMenu() {
-        System.out.println("\nВыберите один из следующих вариантов:");
-        System.out.println("1: Изменить пароль");
-        System.out.println("2: Изменить роль");
-        System.out.println("3: Заблокировать учетную запись");
-        System.out.println("4: Разблокировать учетную запись");
-        System.out.println("0: Вернуться в предыдущее меню");
+        System.out.println(CHOOSE_MENU_POINT);
+        System.out.println(CHANGE_PASSWORD);
+        System.out.println(CHANGE_ROLE);
+        System.out.println(BLOCK_ACCOUNT);
+        System.out.println(UNBLOCK_ACCOUNT);
+        System.out.println(PREVIOUS_MENU);
     }
 }

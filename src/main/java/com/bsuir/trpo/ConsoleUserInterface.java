@@ -5,6 +5,8 @@ import com.bsuir.trpo.model.User;
 import com.bsuir.trpo.service.user.RegistrationService;
 import com.bsuir.trpo.service.menu.*;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
+
 
 public final class ConsoleUserInterface {
 
@@ -42,7 +44,7 @@ public final class ConsoleUserInterface {
     public void start() {
         printHelloWord();
         if (!connectionIsOk()) {
-            System.out.println("Система была только что создана! Пожалуйста, зарегистрируйте аккаунт администратора!");
+            System.out.println(SYSTEM_CREATED_JUST_NOW);
             RegistrationService registrationService = new RegistrationService();
             while (!registrationService.register(true, true)) ;
         }
@@ -55,15 +57,15 @@ public final class ConsoleUserInterface {
     }
 
     private boolean connectionIsOk() {
-        System.out.println("=============Проверка системы=============");
+        System.out.println(CHECKING_SYSTEM);
         SqlInitializer sqlInitializer = new SqlInitializer();
-        boolean result = sqlInitializer.checkTablesInDB();
-        System.out.println("=============Проверка завершена=============");
+        boolean result = sqlInitializer.isTablesOk();
+        System.out.println(CHECKING_COMPLETE);
         return result;
     }
 
     private void printHelloWord() {
-        System.out.println("\n--Добро пожаловать в программу распределения мест в общежитии!--\n");
+        System.out.println(WELCOME_WORDS);
     }
 
     public static User getActiveAdminUser() {

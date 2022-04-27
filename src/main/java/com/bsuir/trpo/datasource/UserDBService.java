@@ -1,6 +1,5 @@
 package com.bsuir.trpo.datasource;
 
-import com.bsuir.trpo.model.Student;
 import com.bsuir.trpo.model.User;
 
 import java.sql.Connection;
@@ -10,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 import static com.bsuir.trpo.constant.SQLConstant.*;
 
@@ -32,15 +32,13 @@ public class UserDBService {
             }
 
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос");
-            System.err.println(e.getMessage());
+            System.err.println(CANNOT_EXECUTE_QUERY);
             return new User();
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.err.println("Невозможно закрыть соединение");
-                System.err.println(e.getMessage());
+                System.err.println(CANNOT_CLOSE_CONNECTION);
                 return new User();
             }
         }
@@ -63,15 +61,13 @@ public class UserDBService {
                 userList.add(user);
             }
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос");
-            System.err.println(e.getMessage());
+            System.err.println(CANNOT_EXECUTE_QUERY);
             return new ArrayList<>();
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.err.println("Невозможно закрыть соединение");
-                System.err.println(e.getMessage());
+                System.err.println(CANNOT_CLOSE_CONNECTION);
                 return new ArrayList<>();
             }
         }
@@ -93,15 +89,13 @@ public class UserDBService {
                 userList.add(user);
             }
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос");
-            System.err.println(e.getMessage());
+            System.err.println(CANNOT_EXECUTE_QUERY);
             return new ArrayList<>();
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.err.println("Невозможно закрыть соединение");
-                System.err.println(e.getMessage());
+                System.err.println(CANNOT_CLOSE_CONNECTION);
                 return new ArrayList<>();
             }
         }
@@ -123,15 +117,13 @@ public class UserDBService {
                 userList.add(user);
             }
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос");
-            System.err.println(e.getMessage());
+            System.err.println(CANNOT_EXECUTE_QUERY);
             return new ArrayList<>();
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.err.println("Невозможно закрыть соединение");
-                System.err.println(e.getMessage());
+                System.err.println(CANNOT_CLOSE_CONNECTION);
                 return new ArrayList<>();
             }
         }
@@ -150,20 +142,18 @@ public class UserDBService {
             boolean isSuccess = statement.execute();
 
             if (isSuccess) {
-                System.out.println("Пользователю " + userLogin + " успешно предоставлен доступ к системе!\n");
+                System.out.println(userLogin + USER_ACCESSED);
             } else {
-                System.out.println("Пользователя " + userLogin + " не существует!\n");
+                System.out.println(userLogin + NOT_EXISTS);
             }
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос");
-            System.err.println(e.getMessage());
+            System.err.println(CANNOT_EXECUTE_QUERY);
             return;
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.err.println("Невозможно закрыть соединение");
-                System.err.println(e.getMessage());
+                System.err.println(CANNOT_CLOSE_CONNECTION);
                 return;
             }
         }
@@ -177,23 +167,21 @@ public class UserDBService {
             statement.setString(1, userLogin);
 
             statement.execute();
-            System.out.println("Пользователь  " + userLogin + " успешно удалена!\n");
+            System.out.println(USER_DELETED);
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос");
-            System.err.println(e.getMessage());
+            System.err.println(CANNOT_EXECUTE_QUERY);
             return;
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.err.println("Невозможно закрыть соединение");
-                System.err.println(e.getMessage());
+                System.err.println(CANNOT_CLOSE_CONNECTION);
                 return;
             }
         }
     }
 
-    public boolean changePassword(String login, String saltedHashPassword, String salt) {
+    public void changePassword(String login, String saltedHashPassword, String salt) {
         Connection connection = DataSource.getConnection();
 
         try {
@@ -202,25 +190,18 @@ public class UserDBService {
             statement.setString(2, salt);
             statement.setString(3, login);
 
-            return statement.execute();
+            statement.execute();
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос");
-            System.err.println(e.getMessage());
-            return false;
+            System.err.println(CANNOT_EXECUTE_QUERY);
+            return;
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.err.println("Невозможно закрыть соединение");
-                System.err.println(e.getMessage());
-                return false;
+                System.err.println(CANNOT_CLOSE_CONNECTION);
+                return;
             }
         }
-
-
-
-
-
     }
 
     public void setRole(String login, boolean role) {
@@ -233,15 +214,13 @@ public class UserDBService {
 
             statement.execute();
         } catch (SQLException e) {
-            System.err.println("Невозможно выполнить запрос");
-            System.err.println(e.getMessage());
+            System.err.println(CANNOT_EXECUTE_QUERY);
             return;
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.err.println("Невозможно закрыть соединение");
-                System.err.println(e.getMessage());
+                System.err.println(CANNOT_CLOSE_CONNECTION);
                 return;
             }
         }

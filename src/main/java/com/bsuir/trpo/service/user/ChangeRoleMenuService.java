@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.LOGIN;
 import static com.bsuir.trpo.constant.ParamConstant.ROLE;
 
@@ -16,19 +17,19 @@ public class ChangeRoleMenuService implements ActionService {
     public void changeUserRole() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введите логин аккаунта, на котором следует изменить роль:");
+        System.out.println(INPUT_LOGIN);
         String login = scanner.nextLine();
-        System.out.println("Введите 1, чтобы аккаунт стал администраторским, 0 - пользовательским");
+        System.out.println(CHANGE_ROLE_HELPER);
         int role = 0;
         try {
             role = scanner.nextInt();
         } catch (InputMismatchException e) {
-            System.err.println("Необходимо вводить числовое значение!");
+            System.err.println(NEED_NUMBER);
             return;
         }
 
         if (login == null || login.equals("") || role < 0 || role > 1) {
-            System.err.println("Значения пусты, либо являются неверными!");
+            System.err.println(VALUES_EMPTY_OR_INCORRECT);
             return;
         }
 
@@ -47,17 +48,17 @@ public class ChangeRoleMenuService implements ActionService {
         User user = userDBService.getUser(login);
 
         if (userDBService.getAllAdmins().size() == 1 && user.getRole() && !role) {
-            System.err.println("ВНИМАНИЕ. ВЫ НЕ МОЖЕТЕ ИЗМЕНИТЬ РОЛЬ ЭТОГО ПОЛЬЗОВАТЕЛЯ, ТАК КАК ОН ПОСЛЕДНИЙ АДМИНИСТРАТОР!");
+            System.err.println(CANNOT_CHANGE_ROLE);
             return new HashMap<>();
         }
 
         if (user == null) {
-            System.err.println("Пользователя " + login + " не существует в системе");
+            System.err.println(USER_NOT_EXISTS);
             return new HashMap<>();
         }
 
         userDBService.setRole(login, role);
-        System.out.println("Роль " + login + " успешно изменена на роль" + (role ? " администратора" : " пользователя"));
+        System.out.println(ROLE_LOG + login + CHANGE_ROLE + (role ? ADMIN_LOG : USERA_LOG));
 
         return new HashMap<>();
     }

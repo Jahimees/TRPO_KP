@@ -10,22 +10,23 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 import static com.bsuir.trpo.constant.SQLConstant.INSERT_INTO_USER;
 
 public class RegistrationService implements ActionService {
 
     public boolean register(boolean isAdmin, boolean access) {
-        System.out.println("Введите логин: ");
+        System.out.println(INPUT_LOGIN);
 
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
 
-        System.out.println("Введите пароль: ");
+        System.out.println(INPUT_PASSWORD);
         String password = scanner.nextLine();
 
         if (login == null || login.equals("") || password == null || password.equals("")) {
-            System.err.println("Значения не могут быть пустыми!");
+            System.err.println(VALUE_CANNOT_BE_EMPTY);
             return false;
         }
 
@@ -40,7 +41,6 @@ public class RegistrationService implements ActionService {
 
     @Override
     public HashMap<String, Object> execute(HashMap<String, Object> params) {
-        System.out.println("Регистрируем нового пользователя...");
         String login = (String) params.get(LOGIN);
         String clearPassword = (String) params.get(CLEAR_PASSWORD);
         boolean role = (boolean) params.get(ROLE);
@@ -65,11 +65,10 @@ public class RegistrationService implements ActionService {
             statement.setBoolean(5, access);
 
             statement.execute();
-            System.out.println("Регистрация прошла успешно!");
+            System.out.println(REGISTER_SUCCESSFUL);
             resultParams.put(SUCCESS, true);
         } catch (SQLException e) {
-            System.err.println("Невозможно зарегистрировать пользователя.");
-            System.err.println(e);
+            System.err.println(USER_ALREADY_EXISTS);
             resultParams.put(SUCCESS, false);
         }
 

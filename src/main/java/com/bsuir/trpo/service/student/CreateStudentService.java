@@ -7,22 +7,23 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
 public class CreateStudentService implements ActionService {
 
     public void createOrUpdateStudent() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите ФИО студента:");
+        System.out.println(INPUT_STUDENT_FIO);
 
         String fio = scanner.nextLine();
 
         if (fio == null || fio.equals("")) {
-            System.err.println("ФИО не может быть пустым!");
+            System.err.println(VALUE_CANNOT_BE_EMPTY);
             return;
         }
 
-        System.out.println("Введите номер группы студента:");
+        System.out.println(INPUT_GROUP);
         int group = 0;
         try {
             group = scanner.nextInt();
@@ -30,11 +31,11 @@ public class CreateStudentService implements ActionService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Необходимо ввести 6-значное числовое значение!");
+            System.err.println(NEED_6_DIGITS);
             return;
         }
 
-        System.out.println("Введите среднюю оценку учащегося");
+        System.out.println(INPUT_AVERAGE_MARK);
         float averageMark = 0;
         try {
             averageMark = scanner.nextFloat();
@@ -42,11 +43,11 @@ public class CreateStudentService implements ActionService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Необходимо ввести дробное число от 0 до 10 (Напр. 5,4)");
+            System.err.println(ERROR_AVERAGE_MARK);
             return;
         }
 
-        System.out.println("Введите, активен ли учащийся (1 - да, 2 - нет)");
+        System.out.println(INPUT_ACTIVITY);
         int activityInt;
         boolean activity;
         try {
@@ -56,11 +57,11 @@ public class CreateStudentService implements ActionService {
             }
             activity = activityInt == 1;
         } catch (InputMismatchException e) {
-            System.err.println("Необходимо ввести 1 или 2");
+            System.err.println(NEED_1_or_2);
             return;
         }
 
-        System.out.println("Введите доход на члена семьи (б.р.):");
+        System.out.println(INPUT_INCOME);
         float income = 0;
         try {
             income = scanner.nextFloat();
@@ -68,7 +69,7 @@ public class CreateStudentService implements ActionService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Значение не может быть меньше 50");
+            System.err.println(ERROR_INCOME);
         }
 
         HashMap<String, Object> params = new HashMap<>();

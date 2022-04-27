@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static com.bsuir.trpo.ConsoleUserInterface.*;
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 
 public class StudentListManagerMenuService extends MenuService {
     @Override
@@ -26,7 +27,7 @@ public class StudentListManagerMenuService extends MenuService {
 
                 break;
             } catch (InputMismatchException e) {
-                System.err.println("Необходимо ввести числовое значение (0-7)");
+                System.err.println(NEED_NUMBER_0_7);
             }
         }
         return userInput + "";
@@ -58,14 +59,14 @@ public class StudentListManagerMenuService extends MenuService {
                 }
                 case "5": {
                     StudentDBService studentDBService = new StudentDBService();
-                    System.out.println("Очередь на получение общежития:");
+                    System.out.println(QUERY_FOR_PLACE);
                     printStudents(new SortStudentService().prioritySort(studentDBService.getAllStudents()));
                     break;
                 }
                 case "6": {
                     List<Student> studentList = new SearchStudentService().searchStudents();
                     if (studentList.isEmpty()) {
-                        System.out.println("По заданным параметрам студенты не найдены!");
+                        System.out.println(STUDENTS_NOT_FOUND);
                         break;
                     }
 
@@ -87,12 +88,12 @@ public class StudentListManagerMenuService extends MenuService {
     }
 
     public static void printStudents(List<Student> studentList) {
-        System.out.println("Список студентов, стоящих в очереди на общежитие:");
+        System.out.println(QUERY_FOR_PLACE);
         if (studentList.isEmpty()) {
-            System.out.println("На данный момент список не существует\n");
+            System.out.println(LIST_NOT_EXISTS);
             return;
         }
-        System.out.println(" ID|      ФИО           | № Группы |Ср.б.|Активность|Доход на ч.");
+        System.out.println(HEADER_STUDENTS);
         for (Student student : studentList) {
             String fio = student.getFio();
             for (int i = 0; i < 18 - student.getFio().length(); i++) {
@@ -106,14 +107,14 @@ public class StudentListManagerMenuService extends MenuService {
 
     @Override
     protected void printMenu() {
-        System.out.println("Выберите один из следующих пунктов:");
-        System.out.println("1: Просмотреть все записи");
-        System.out.println("2: Добавление новой записи");
-        System.out.println("3: Удалить запись");
-        System.out.println("4: Редактировать запись\n");
-        System.out.println("5: Вывести список очередности предоставления места в общежитии (Индивидуальное задание)");
-        System.out.println("6: Поиск данных");
-        System.out.println("7: Сортировка\n");
-        System.out.println("0: Назад");
+        System.out.println(CHOOSE_MENU_POINT);
+        System.out.println(SHOW_ALL_STUDENTS);
+        System.out.println(ADD_NEW_RECORD);
+        System.out.println(DELETE_RECORD);
+        System.out.println(EDIT_RECORD);
+        System.out.println(INDIVIDUAL_TASK_MESSAGE);
+        System.out.println(SEARCHING_DATA);
+        System.out.println(SORTING);
+        System.out.println(PREVIOUS_MENU);
     }
 }

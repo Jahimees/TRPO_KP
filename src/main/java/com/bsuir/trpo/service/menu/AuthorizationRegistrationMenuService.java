@@ -6,6 +6,8 @@ import com.bsuir.trpo.service.user.RegistrationService;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
+
 public class AuthorizationRegistrationMenuService extends MenuService {
 
     @Override
@@ -22,7 +24,7 @@ public class AuthorizationRegistrationMenuService extends MenuService {
 
                 break;
             } catch (InputMismatchException e) {
-                System.err.println("Необходимо ввести числовое значение (1-3)");
+                System.err.println(NEED_NUMBER_1_3);
             }
         }
         return userInput + "";
@@ -44,7 +46,7 @@ public class AuthorizationRegistrationMenuService extends MenuService {
                 }
                 case "2": {
                     if (new RegistrationService().register(false, false)) {
-                        System.out.println("ВНИМАНИЕ! На регистрацию была подана только заявка! Вы не можете авторизоваться сейчас!");
+                        System.out.println(REGISTRATION_APPLICATION);
                     }
                     break;
                 }
@@ -57,9 +59,9 @@ public class AuthorizationRegistrationMenuService extends MenuService {
 
     @Override
     protected void printMenu() {
-        System.out.println("Выберите вариант:");
-        System.out.println("1: Авторизоваться");
-        System.out.println("2: Зарегистрироваться");
-        System.out.println("3: Завершить работу");
+        System.out.println(CHOOSE_MENU_POINT);
+        System.out.println(AUTHORIZE);
+        System.out.println(REGISTER);
+        System.out.println(END_WORK);
     }
 }

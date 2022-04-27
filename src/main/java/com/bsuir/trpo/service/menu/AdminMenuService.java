@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static com.bsuir.trpo.ConsoleUserInterface.*;
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 
 public class AdminMenuService extends AccountMenuService {
 
@@ -23,7 +24,7 @@ public class AdminMenuService extends AccountMenuService {
 
                 break;
             } catch (InputMismatchException e) {
-                System.err.println("Необходимо ввести числовое значение (0-3)");
+                System.err.println(NEED_NUMBER_0_3);
             }
         }
         return userInput + "";
@@ -63,10 +64,10 @@ public class AdminMenuService extends AccountMenuService {
 
     @Override
     protected void printMenu() {
-        System.out.println("Выберите вариант:");
-        System.out.println("1: Заявки на подтверждение регистрации");
-        System.out.println("2: Управление учетными записями пользователей");
-        System.out.println("3: Управление списками студентов на очередь в общежитие");
-        System.out.println("0: Выйти из системы");
+        System.out.println(CHOOSE_MENU_POINT);
+        System.out.println(CONFIRM_APPLICATIONS);
+        System.out.println(MANAGE_ACCOUNTS);
+        System.out.println(MANAGE_STUDENTS);
+        System.out.println(SYSTEM_EXIT);
     }
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
 public class UpdateStudentService extends CreateStudentService {
@@ -15,7 +16,7 @@ public class UpdateStudentService extends CreateStudentService {
     @Override
     public void createOrUpdateStudent() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите id изменяемого студента: ");
+        System.out.println(INPUT_ID_STUDENT);
 
         try {
             id = scanner.nextInt();
@@ -23,7 +24,7 @@ public class UpdateStudentService extends CreateStudentService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Id должно быть числом > 0");
+            System.err.println(ERROR_ID);
             return;
         }
 
@@ -40,7 +41,7 @@ public class UpdateStudentService extends CreateStudentService {
 
         StudentDBService studentDBService = new StudentDBService();
         if (studentDBService.getStudent(id) == null) {
-            System.err.println("Такого студента не существует!");
+            System.err.println(STUDENT_NOT_EXISTS);
             return new HashMap<>();
         }
 

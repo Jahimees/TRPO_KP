@@ -10,14 +10,16 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
+
 public class SearchStudentService {
 
     public List<Student> searchStudents() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("По какому параметру найти студента(ов)?");
-        System.out.println("1: ФИО");
-        System.out.println("2: Номер группы");
-        System.out.println("3: Активность");
+        System.out.println(PARAMETER_FOR_SEARCHING_STUDENT);
+        System.out.println(FIO_MENU);
+        System.out.println(GROUP_NUMBER_MENU);
+        System.out.println(ACTIVITY_MENU);
 
         int userInput = 0;
         try {
@@ -26,7 +28,7 @@ public class SearchStudentService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Необходимо ввести число >1 и <3");
+            System.err.println(NEED_NUMBER_1_3);
             return new ArrayList<>();
         }
 
@@ -41,7 +43,7 @@ public class SearchStudentService {
 
     public List<Student> searchByFIO() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите ФИО (фамилию, её часть или инициалы)");
+        System.out.println(INPUT_FIO_PART);
 
         String fio = scanner.nextLine();
         try {
@@ -49,7 +51,7 @@ public class SearchStudentService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Значение не может быть пустым!");
+            System.err.println(VALUE_CANNOT_BE_EMPTY);
             return new ArrayList<>();
         }
 
@@ -71,7 +73,7 @@ public class SearchStudentService {
 
     public List<Student> searchByGroup() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите номер группы");
+        System.out.println(INPUT_GROUP);
 
         int group = 0;
         try {
@@ -80,7 +82,7 @@ public class SearchStudentService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Значение должно быть шестизначным числом!");
+            System.err.println(NEED_6_DIGITS);
             return new ArrayList<>();
         }
 
@@ -90,7 +92,7 @@ public class SearchStudentService {
 
     public List<Student> searchByActivity() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите 1, для поиска активных студентов, 2 - для неактивных");
+        System.out.println(SEARCHING_BY_ACTIVITY_HELPER);
         int userInput = 0;
         try {
             userInput = scanner.nextInt();
@@ -98,7 +100,7 @@ public class SearchStudentService {
                 throw new InputMismatchException();
             }
         } catch (InputMismatchException e) {
-            System.err.println("Необходимо ввести числовое значение 1 или 2!");
+            System.err.println(NEED_1_or_2);
             return new ArrayList<>();
         }
 
