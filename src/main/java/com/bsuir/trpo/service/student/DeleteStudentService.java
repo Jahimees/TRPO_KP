@@ -2,7 +2,6 @@ package com.bsuir.trpo.service.student;
 
 import com.bsuir.trpo.datasource.StudentDBService;
 import com.bsuir.trpo.model.Student;
-import com.bsuir.trpo.service.ActionService;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.ID;
 
-public class DeleteStudentService implements ActionService {
+public class DeleteStudentService implements StudentService {
 
     public void deleteStudent() {
         Scanner scanner = new Scanner(System.in);
@@ -46,7 +45,7 @@ public class DeleteStudentService implements ActionService {
             return new HashMap<>();
         }
 
-        if (!confirmDeletion(student.getFio())) {
+        if (!confirmDeletion()) {
             return new HashMap<>();
         }
 
@@ -54,7 +53,7 @@ public class DeleteStudentService implements ActionService {
         return new HashMap<>();
     }
 
-    public boolean confirmDeletion(String name) {
+    public boolean confirmDeletion() {
         Scanner scanner = new Scanner(System.in);
         System.out.println(WARNING_DELETE_STUDENT);
 

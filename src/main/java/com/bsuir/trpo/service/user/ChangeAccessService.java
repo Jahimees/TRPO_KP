@@ -3,16 +3,15 @@ package com.bsuir.trpo.service.user;
 import com.bsuir.trpo.ConsoleUserInterface;
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
-import com.bsuir.trpo.service.ActionService;
 
 import java.util.HashMap;
 import java.util.Scanner;
 
 import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
-import static com.bsuir.trpo.constant.LoggerMessageConstant.USER_LOG;
-import static com.bsuir.trpo.constant.ParamConstant.*;
+import static com.bsuir.trpo.constant.ParamConstant.ACCESS;
+import static com.bsuir.trpo.constant.ParamConstant.LOGIN;
 
-public class ChangeAccessService implements ActionService {
+public class ChangeAccessService implements UserService {
 
     public void changeUserAccess(boolean access) {
         Scanner scanner = new Scanner(System.in);

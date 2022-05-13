@@ -2,7 +2,6 @@ package com.bsuir.trpo.service.user;
 
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
-import com.bsuir.trpo.service.ActionService;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -12,7 +11,7 @@ import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.LOGIN;
 import static com.bsuir.trpo.constant.ParamConstant.ROLE;
 
-public class ChangeRoleMenuService implements ActionService {
+public class ChangeRoleMenuService implements UserService {
 
     public void changeUserRole() {
         Scanner scanner = new Scanner(System.in);

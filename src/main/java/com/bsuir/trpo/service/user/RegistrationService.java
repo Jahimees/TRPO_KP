@@ -1,7 +1,6 @@
 package com.bsuir.trpo.service.user;
 
 import com.bsuir.trpo.datasource.DataSource;
-import com.bsuir.trpo.service.ActionService;
 import com.bsuir.trpo.service.HashPasswordService;
 
 import java.sql.Connection;
@@ -14,7 +13,7 @@ import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 import static com.bsuir.trpo.constant.SQLConstant.INSERT_INTO_USER;
 
-public class RegistrationService implements ActionService {
+public class RegistrationService implements UserService {
 
     public boolean register(boolean isAdmin, boolean access) {
         System.out.println(INPUT_LOGIN);

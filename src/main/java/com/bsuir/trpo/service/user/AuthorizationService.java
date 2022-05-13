@@ -3,7 +3,6 @@ package com.bsuir.trpo.service.user;
 import com.bsuir.trpo.ConsoleUserInterface;
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
-import com.bsuir.trpo.service.ActionService;
 import com.bsuir.trpo.service.HashPasswordService;
 import com.bsuir.trpo.service.menu.AccountMenuService;
 
@@ -15,7 +14,7 @@ import static com.bsuir.trpo.ConsoleUserInterface.USER_MENU_SERVICE_NAME;
 import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
-public class AuthorizationService implements ActionService {
+public class AuthorizationService implements UserService {
 
     public boolean authorize() {
         System.out.println(PLEASE_AUTHORIZE);

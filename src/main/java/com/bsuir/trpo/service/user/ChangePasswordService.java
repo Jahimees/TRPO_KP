@@ -2,7 +2,6 @@ package com.bsuir.trpo.service.user;
 
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
-import com.bsuir.trpo.service.ActionService;
 import com.bsuir.trpo.service.HashPasswordService;
 
 import java.util.HashMap;
@@ -12,7 +11,7 @@ import static com.bsuir.trpo.constant.LoggerMessageConstant.PASSWORD_CHANGED;
 import static com.bsuir.trpo.constant.LoggerMessageConstant.USER_NOT_EXISTS;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
-public class ChangePasswordService implements ActionService {
+public class ChangePasswordService implements UserService {
 
     public void changePassword() {
         Scanner scanner = new Scanner(System.in);

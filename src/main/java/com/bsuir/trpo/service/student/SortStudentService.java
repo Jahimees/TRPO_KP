@@ -6,7 +6,7 @@ import java.util.*;
 
 import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 
-public class SortStudentService {
+public class SortStudentService implements StudentService {
 
     public List<Student> prioritySort(List<Student> studentList) {
         Scanner scanner = new Scanner(System.in);
@@ -128,5 +128,10 @@ public class SortStudentService {
         Collections.sort(resultList, Comparator.comparing(Student::getFio));
 
         return resultList;
+    }
+
+    @Override
+    public HashMap<String, Object> execute(HashMap<String, Object> params) {
+        return null;
     }
 }

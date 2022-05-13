@@ -1,7 +1,6 @@
 package com.bsuir.trpo.service.student;
 
 import com.bsuir.trpo.datasource.StudentDBService;
-import com.bsuir.trpo.service.ActionService;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
-public class CreateStudentService implements ActionService {
+public class CreateStudentService implements StudentService {
 
     public void createOrUpdateStudent() {
         Scanner scanner = new Scanner(System.in);

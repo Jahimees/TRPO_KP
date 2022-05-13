@@ -3,7 +3,6 @@ package com.bsuir.trpo.service.user;
 import com.bsuir.trpo.ConsoleUserInterface;
 import com.bsuir.trpo.datasource.UserDBService;
 import com.bsuir.trpo.model.User;
-import com.bsuir.trpo.service.ActionService;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -13,7 +12,7 @@ import static com.bsuir.trpo.constant.LoggerMessageConstant.NEED_1_or_2;
 import static com.bsuir.trpo.constant.LoggerMessageConstant.WARNING_DELETE_ACCOUNT;
 import static com.bsuir.trpo.constant.ParamConstant.LOGIN;
 
-public class RemoveAccountService implements ActionService {
+public class RemoveAccountService implements UserService {
 
     public void removeAccount() {
         Scanner scanner = new Scanner(System.in);

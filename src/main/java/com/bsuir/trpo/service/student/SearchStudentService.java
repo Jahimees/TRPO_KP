@@ -3,16 +3,13 @@ package com.bsuir.trpo.service.student;
 import com.bsuir.trpo.datasource.StudentDBService;
 import com.bsuir.trpo.model.Student;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 
-public class SearchStudentService {
+public class SearchStudentService implements StudentService {
 
     public List<Student> searchStudents() {
         Scanner scanner = new Scanner(System.in);
@@ -110,5 +107,10 @@ public class SearchStudentService {
         } else {
             return studentDBService.getStudentsByActivity(false);
         }
+    }
+
+    @Override
+    public HashMap<String, Object> execute(HashMap<String, Object> params) {
+        return null;
     }
 }
