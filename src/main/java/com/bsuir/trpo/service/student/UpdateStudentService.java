@@ -40,7 +40,7 @@ public class UpdateStudentService extends CreateStudentService {
         float income = (float) params.get(INCOME);
 
         StudentDBService studentDBService = new StudentDBService();
-        if (studentDBService.getStudent(id) == null) {
+        if (studentDBService.getStudent(id).getId() == 0) {
             System.err.println(STUDENT_NOT_EXISTS);
             return new HashMap<>();
         }

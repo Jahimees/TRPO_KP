@@ -44,7 +44,7 @@ public class RemoveAccountService implements UserService {
         UserDBService userDBService = new UserDBService();
         User user = userDBService.getUser(login);
 
-        if (user == null) {
+        if (user.getLogin() == null) {
             System.err.println("Пользователя " + login + " не существует!");
             return new HashMap<>();
         }

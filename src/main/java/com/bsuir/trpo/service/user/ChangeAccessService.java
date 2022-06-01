@@ -43,7 +43,7 @@ public class ChangeAccessService implements UserService {
 
         User user = userDBService.getUser(login);
 
-        if (user == null) {
+        if (user.getLogin() == null) {
             System.err.println(USER_NOT_EXISTS);
             return new HashMap<>();
         }

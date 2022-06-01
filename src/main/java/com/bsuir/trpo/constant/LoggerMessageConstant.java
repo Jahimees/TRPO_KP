@@ -75,7 +75,7 @@ public class LoggerMessageConstant {
     public static final String ERROR_AVERAGE_MARK = "Необходимо ввести дробное число от 0 до 10 (Напр. 5,4)";
     public static final String INPUT_ACTIVITY = "Введите, активен ли учащийся (1 - да, 2 - нет)";
     public static final String INPUT_INCOME = "Введите доход на члена семьи (б.р.):";
-    public static final String ERROR_INCOME = "Значение не может быть меньше 50";
+    public static final String ERROR_INCOME = "Значение должно быть числовым и не может быть меньше 50";
     public static final String INPUT_ID_STUDENT = "Введите id студента";
     public static final String ERROR_ID = "Id должно быть числом > 0";
     public static final String STUDENT_NOT_EXISTS = "Такого студента не существует";

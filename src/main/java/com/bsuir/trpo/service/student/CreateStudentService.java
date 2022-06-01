@@ -69,6 +69,7 @@ public class CreateStudentService implements StudentService {
             }
         } catch (InputMismatchException e) {
             System.err.println(ERROR_INCOME);
+            return;
         }
 
         HashMap<String, Object> params = new HashMap<>();

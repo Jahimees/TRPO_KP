@@ -40,7 +40,7 @@ public class DeleteStudentService implements StudentService {
         StudentDBService studentDBService = new StudentDBService();
         Student student = studentDBService.getStudent(id);
 
-        if (student == null) {
+        if (student.getId() == 0) {
             System.err.println(STUDENT_NOT_EXISTS);
             return new HashMap<>();
         }

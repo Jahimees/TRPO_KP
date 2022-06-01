@@ -141,11 +141,6 @@ public class UserDBService {
 
             boolean isSuccess = statement.execute();
 
-            if (isSuccess) {
-                System.out.println(userLogin + USER_ACCESSED);
-            } else {
-                System.out.println(userLogin + NOT_EXISTS);
-            }
         } catch (SQLException e) {
             System.err.println(CANNOT_EXECUTE_QUERY);
             return;

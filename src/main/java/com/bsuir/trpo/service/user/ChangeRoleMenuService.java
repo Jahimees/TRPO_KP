@@ -51,13 +51,13 @@ public class ChangeRoleMenuService implements UserService {
             return new HashMap<>();
         }
 
-        if (user == null) {
+        if (user.getLogin() == null) {
             System.err.println(USER_NOT_EXISTS);
             return new HashMap<>();
         }
 
         userDBService.setRole(login, role);
-        System.out.println(ROLE_LOG + login + CHANGE_ROLE + (role ? ADMIN_LOG : USERA_LOG));
+        System.out.println(ROLE_LOG + login + CHANGED_ROLE + (role ? ADMIN_LOG : USERA_LOG));
 
         return new HashMap<>();
     }
