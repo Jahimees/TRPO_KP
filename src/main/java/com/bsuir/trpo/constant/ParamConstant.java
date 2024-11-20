@@ -20,5 +20,6 @@ public class ParamConstant {
     public static final String GROUP = "group";
     public static final String AVERAGE_MARK = "average_mark";
     public static final String ACTIVITY = "activity";
+    public static final String TEST = "test";
     public static final String INCOME = "income";
 }
