@@ -29,7 +29,7 @@ public class LoggerMessageConstant {
     public static final String QUERY_FOR_PLACE = "Очередь на получение общежития:";
     public static final String STUDENTS_NOT_FOUND = "По заданным параметрам студенты не найдены!";
     public static final String LIST_NOT_EXISTS = "На данный момент список не существует\n";
-    public static final String HEADER_STUDENTS = " ID|      ФИО           | № Группы |Ср.б.|Активность|Доход на ч.";
+    public static final String HEADER_STUDENTS = " ID|      1ФИО 1          | № Группы |Ср.б.|Активность|Доход на ч.";
 
     public static final String NEED_NUMBER_0_4 = "Необходимо ввести числовое значение (0-4)";
     public static final String NEED_NUMBER_0_3 = "Необходимо ввести числовое значение (0-3)";
