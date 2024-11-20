@@ -10,6 +10,8 @@ import static com.bsuir.trpo.constant.LoggerMessageConstant.*;
 import static com.bsuir.trpo.constant.ParamConstant.*;
 
 public class CreateStudentService implements StudentService {
+  
+  private String hello = "hello";
 
     public void createOrUpdateStudent() {
         Scanner scanner = new Scanner(System.in);
