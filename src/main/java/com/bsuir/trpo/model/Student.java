@@ -7,7 +7,7 @@ public class Student {
     private float averageMark;
     private boolean activity;
     private float income;
-  private String lol;
+  private String lol = "test";
 
     public int getId() {
         return id;
